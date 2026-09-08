@@ -65,9 +65,11 @@ async function start() {
   }
   rafId = requestAnimationFrame(frame);
 
+  // If rAF is healthy it will have ticked within the last frame or two and this
+  // does nothing. If it has stalled, this keeps the game running at ~30fps.
   setInterval(() => {
     const now = performance.now();
-    if (now - lastTick < 100) return;   // rAF is healthy, leave it alone
+    if (now - lastTick < 32) return;
     step(now);
   }, 16);
 
