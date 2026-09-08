@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Abbytro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; height: 100%; background: #0d0f14; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; font-family: Nunito, system-ui, sans-serif; }
+    canvas { display: block; width: 100vw; height: 100vh; touch-action: none; cursor: default; image-rendering: auto; }
+    #boot { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; color: #c9c2b2; font: 800 18px Nunito, sans-serif; letter-spacing: .1em; pointer-events: none; transition: opacity .3s; }
+    #boot.hidden { opacity: 0; }
+  </style>
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div id="boot">SHUFFLING…</div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

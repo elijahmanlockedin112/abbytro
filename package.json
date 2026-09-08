@@ -1,0 +1,13 @@
+{
+  "name": "abbytro",
+  "version": "0.1.0",
+  "description": "Abbytro — a poker-hand roguelike deckbuilder. Chips × Mult, jokers, antes, and very big numbers.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node tools/serve.js",
+    "test": "node --test",
+    "sim": "node tools/sim.js"
+  },
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,884 @@
+[
+  {
+    "id": "candlelighter",
+    "name": "Candlelighter",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "She lights one for every heart that ever burned.",
+    "description": "+{mult} Mult per scored Heart. Hearts held in hand give +1 Mult each.",
+    "art": { "glyph": "🕯️", "bg": "#6b2d3e", "fg": "#ffd9e0", "shape": "circle" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "suit": "hearts" }, "do": { "mult": 3 } },
+      { "trigger": "card_held", "when": { "suit": "hearts" }, "do": { "mult": 1 } }
+    ]
+  },
+  {
+    "id": "tithe_box",
+    "name": "Tithe Box",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "A tenth of everything, and the box never fills.",
+    "description": "+{chips} Chips per scored Diamond. Each scored Diamond has a 1 in 8 chance to give $1.",
+    "art": { "glyph": "💎", "bg": "#1f5f7a", "fg": "#d6f3ff", "shape": "diamond" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "suit": "diamonds" }, "do": { "chips": 25 } },
+      { "trigger": "card_scored", "when": { "suit": "diamonds", "chance": { "num": 1, "den": 8 } }, "do": { "money": 1 } }
+    ]
+  },
+  {
+    "id": "oak_cudgel",
+    "name": "Oak Cudgel",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Blunt, heavy, and very persuasive.",
+    "description": "+{mult} Mult per scored Club.",
+    "art": { "glyph": "🌳", "bg": "#3d6b4f", "fg": "#e3f5e8", "shape": "shield" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "suit": "clubs" }, "do": { "mult": 4 } }
+    ]
+  },
+  {
+    "id": "sextons_spade",
+    "name": "Sexton's Spade",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Digs deep. Asks no questions.",
+    "description": "+{chips} Chips and +{mult} Mult per scored Spade.",
+    "art": { "glyph": "🪦", "bg": "#37414f", "fg": "#e5e7eb", "shape": "burst" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "suit": "spades" }, "do": { "chips": 10, "mult": 2 } }
+    ]
+  },
+  {
+    "id": "portrait_gallery",
+    "name": "Portrait Gallery",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Every face on the wall is judging your hand.",
+    "description": "+{chips} Chips per scored face card.",
+    "art": { "glyph": "🖼️", "bg": "#4a3f6b", "fg": "#efe9ff", "shape": "square" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "face": true }, "do": { "chips": 30 } }
+    ]
+  },
+  {
+    "id": "courtiers",
+    "name": "Courtiers",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "They hover. They whisper. They never leave.",
+    "description": "Face cards held in hand give +{mult} Mult each.",
+    "art": { "glyph": "🎩", "bg": "#2f4858", "fg": "#dbe9f4", "shape": "circle" },
+    "effects": [
+      { "trigger": "card_held", "when": { "face": true }, "do": { "mult": 2 } }
+    ]
+  },
+  {
+    "id": "pennywhistle",
+    "name": "Pennywhistle",
+    "rarity": "common",
+    "cost": 3,
+    "flavor": "Three notes, over and over, from the cheap seats.",
+    "description": "Scored 2s, 3s and 4s give +{mult} Mult each.",
+    "art": { "glyph": "🎶", "bg": "#2a6f77", "fg": "#d9fbff", "shape": "diamond" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "rankIn": ["2", "3", "4"] }, "do": { "mult": 5 } }
+    ]
+  },
+  {
+    "id": "abacus",
+    "name": "Abacus",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Beads click. Somewhere, a sum is settled.",
+    "description": "+{chips} Chips per scored numbered card (2 through 10).",
+    "art": { "glyph": "🧮", "bg": "#556b2f", "fg": "#f0f7d9", "shape": "shield" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "rankIn": ["2", "3", "4", "5", "6", "7", "8", "9", "10"] }, "do": { "chips": 15 } }
+    ]
+  },
+  {
+    "id": "dyers_vat",
+    "name": "Dyer's Vat",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Everything comes out the same colour eventually.",
+    "description": "+{chips} Chips if the played hand contains a Flush.",
+    "art": { "glyph": "🪣", "bg": "#1e4d8c", "fg": "#dbeafe", "shape": "burst" },
+    "effects": [
+      { "trigger": "independent", "when": { "handContains": "flush" }, "do": { "chips": 60 } }
+    ]
+  },
+  {
+    "id": "pilgrims_road",
+    "name": "Pilgrim's Road",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "One step after another, all the way to the shrine.",
+    "description": "+{mult} Mult if the played hand contains a Straight.",
+    "art": { "glyph": "🥾", "bg": "#5a4a3a", "fg": "#f3e9dc", "shape": "square" },
+    "effects": [
+      { "trigger": "independent", "when": { "handContains": "straight" }, "do": { "mult": 6 } }
+    ]
+  },
+  {
+    "id": "masons_ladder",
+    "name": "Mason's Ladder",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Each rung was set by the one before it.",
+    "description": "If the played hand contains a Straight, each scored card gives +{chips} Chips.",
+    "art": { "glyph": "🪜", "bg": "#4b5563", "fg": "#f1f5f9", "shape": "circle" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "handContains": "straight" }, "do": { "chips": 10 } }
+    ]
+  },
+  {
+    "id": "twin_bells",
+    "name": "Twin Bells",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Cast from one mould; they ring in unison.",
+    "description": "When the played hand is a Pair, each scored card retriggers once.",
+    "art": { "glyph": "🔔", "bg": "#3b4a6b", "fg": "#ffe9a8", "shape": "diamond" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "handType": "pair" }, "do": { "retrigger": 1 } }
+    ]
+  },
+  {
+    "id": "solitary_lamp",
+    "name": "Solitary Lamp",
+    "rarity": "common",
+    "cost": 3,
+    "flavor": "Just enough light to read one card by.",
+    "description": "High Card hands give +{chips} Chips and +{mult} Mult.",
+    "art": { "glyph": "🪔", "bg": "#2d3748", "fg": "#fde68a", "shape": "shield" },
+    "effects": [
+      { "trigger": "independent", "when": { "handType": "high_card" }, "do": { "chips": 60, "mult": 5 } }
+    ]
+  },
+  {
+    "id": "moss_stone",
+    "name": "Moss Stone",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "It gathers something after all.",
+    "description": "Gains +4 Chips every time a hand is played. Never resets. Currently +{counter} Chips.",
+    "art": { "glyph": "🌿", "bg": "#2f5d3a", "fg": "#d1fae5", "shape": "burst" },
+    "effects": [
+      { "trigger": "after_hand", "do": {}, "scale": { "stat": "chips", "start": 0, "step": 4, "resetOn": "never" } }
+    ]
+  },
+  {
+    "id": "ivy_creep",
+    "name": "Ivy Creep",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Cut it back and it comes twice as eager.",
+    "description": "Gains +1 Mult per card discarded. Halved when a blind ends. Currently +{counter} Mult.",
+    "art": { "glyph": "🍃", "bg": "#1f4d3a", "fg": "#bbf7d0", "shape": "square" },
+    "effects": [
+      { "trigger": "on_discard", "do": {}, "scale": { "stat": "mult", "start": 0, "step": 1, "resetOn": "never", "decay": { "on": "blind_end", "by": 0.5 } } }
+    ]
+  },
+  {
+    "id": "alms_bowl",
+    "name": "Alms Bowl",
+    "rarity": "common",
+    "cost": 3,
+    "flavor": "Hold it out long enough and someone fills it.",
+    "description": "Earn ${money} at the end of each round, plus $3 more if it was a boss blind.",
+    "art": { "glyph": "🥣", "bg": "#5b7c99", "fg": "#eef6ff", "shape": "circle" },
+    "effects": [
+      { "trigger": "round_end", "do": { "money": 2 } },
+      { "trigger": "round_end", "when": { "isBoss": true }, "do": { "money": 3 } }
+    ]
+  },
+  {
+    "id": "beggars_cup",
+    "name": "Beggar's Cup",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Rattles hopefully whenever anything is thrown away.",
+    "description": "Each discarded card has a 1 in 5 chance to give ${money}.",
+    "art": { "glyph": "🥤", "bg": "#4d5a2b", "fg": "#f7fee7", "shape": "diamond" },
+    "effects": [
+      { "trigger": "on_discard", "when": { "chance": { "num": 1, "den": 5 } }, "do": { "money": 1 } }
+    ]
+  },
+  {
+    "id": "pawnbroker",
+    "name": "Pawnbroker",
+    "rarity": "common",
+    "cost": 3,
+    "flavor": "Everything is worth a little more to somebody.",
+    "description": "Your Jokers sell for $2 more. Interest cap raised by $5.",
+    "art": { "glyph": "⚖️", "bg": "#3f3a5a", "fg": "#e9e5ff", "shape": "shield" },
+    "effects": [
+      { "trigger": "passive", "passive": { "sellValueBonus": 2, "interestCap": 5 } }
+    ]
+  },
+  {
+    "id": "wide_sleeves",
+    "name": "Wide Sleeves",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Room for two more cards and one fewer excuse.",
+    "description": "+2 hand size. -1 Discard.",
+    "art": { "glyph": "🧥", "bg": "#2c5364", "fg": "#e0f2fe", "shape": "burst" },
+    "effects": [
+      { "trigger": "passive", "passive": { "handSize": 2, "discards": -1 } }
+    ]
+  },
+  {
+    "id": "chaff_sack",
+    "name": "Chaff Sack",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "What's left after threshing still counts.",
+    "description": "+1 Discard. +10 Chips per Discard remaining when a hand is scored.",
+    "art": { "glyph": "🌾", "bg": "#6b6b2f", "fg": "#fef9c3", "shape": "square" },
+    "effects": [
+      { "trigger": "passive", "passive": { "discards": 1 } },
+      { "trigger": "independent", "do": { "chipsPer": { "stat": "discardsRemaining", "x": 10 } } }
+    ]
+  },
+  {
+    "id": "bellows",
+    "name": "Bellows",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "More breath for the fire, less for the sweeping.",
+    "description": "+1 Hand. -1 Discard.",
+    "art": { "glyph": "💨", "bg": "#334155", "fg": "#e2e8f0", "shape": "circle" },
+    "effects": [
+      { "trigger": "passive", "passive": { "hands": 1, "discards": -1 } }
+    ]
+  },
+  {
+    "id": "last_rites",
+    "name": "Last Rites",
+    "rarity": "common",
+    "cost": 5,
+    "flavor": "With nothing left to throw away, everything is said twice.",
+    "description": "While you have 0 Discards remaining, each scored card retriggers once.",
+    "art": { "glyph": "🕊️", "bg": "#433a6e", "fg": "#ede9fe", "shape": "diamond" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "discardsRemaining": 0 }, "do": { "retrigger": 1 } }
+    ]
+  },
+  {
+    "id": "glazier",
+    "name": "Glazier",
+    "rarity": "common",
+    "cost": 5,
+    "flavor": "He handles the fragile things with a certain relish.",
+    "description": "Scored Crystal cards give an extra x{xmult} Mult.",
+    "art": { "glyph": "🪟", "bg": "#164e63", "fg": "#cffafe", "shape": "shield" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "enhancement": "glass" }, "do": { "xmult": 1.5 } }
+    ]
+  },
+  {
+    "id": "anvil",
+    "name": "Anvil",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Does nothing but sit there. That is the point.",
+    "description": "Iron cards held in hand give +{mult} Mult each.",
+    "art": { "glyph": "🔩", "bg": "#374151", "fg": "#d1d5db", "shape": "burst" },
+    "effects": [
+      { "trigger": "card_held", "when": { "enhancement": "steel" }, "do": { "mult": 4 } }
+    ]
+  },
+  {
+    "id": "cornerstone",
+    "name": "Cornerstone",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Laid first, forgotten last.",
+    "description": "Scored Slab cards give +{chips} Chips.",
+    "art": { "glyph": "🪨", "bg": "#57534e", "fg": "#f5f5f4", "shape": "square" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "enhancement": "stone" }, "do": { "chips": 40 } }
+    ]
+  },
+  {
+    "id": "mosaic",
+    "name": "Mosaic",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Every altered tile is one more piece of the picture.",
+    "description": "+{mult} Mult per scored card with an enhancement.",
+    "art": { "glyph": "🧩", "bg": "#365c7d", "fg": "#dff1ff", "shape": "circle" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "hasEnhancement": true }, "do": { "mult": 3 } }
+    ]
+  },
+  {
+    "id": "moths",
+    "name": "Moths",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Something is eating the deck. It leaves coins.",
+    "description": "Each scored card has a 1 in 6 chance to be destroyed. You earn ${money} each time.",
+    "art": { "glyph": "🦋", "bg": "#3f4e2f", "fg": "#e7f5d0", "shape": "diamond" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "chance": { "num": 1, "den": 6 } }, "do": { "money": 2, "destroyCard": true } }
+    ]
+  },
+  {
+    "id": "coin_toss",
+    "name": "Coin Toss",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Call it in the air.",
+    "description": "1 in 3 chance for x{xmult} Mult.",
+    "art": { "glyph": "🪙", "bg": "#52525b", "fg": "#fde68a", "shape": "shield" },
+    "effects": [
+      { "trigger": "independent", "when": { "chance": { "num": 1, "den": 3 } }, "do": { "xmult": 2 } }
+    ]
+  },
+  {
+    "id": "empty_pew",
+    "name": "Empty Pew",
+    "rarity": "common",
+    "cost": 3,
+    "flavor": "The fewer who come, the louder the sermon.",
+    "description": "+25 Chips per empty Joker slot.",
+    "art": { "glyph": "🪑", "bg": "#3b3b58", "fg": "#e5e5f5", "shape": "burst" },
+    "effects": [
+      { "trigger": "independent", "do": { "chipsPer": { "stat": "emptyJokerSlots", "x": 25 } } }
+    ]
+  },
+  {
+    "id": "open_door",
+    "name": "Open Door",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Nobody in, nobody out, plenty of room.",
+    "description": "+4 Mult per empty Joker slot.",
+    "art": { "glyph": "🚪", "bg": "#2e4a3f", "fg": "#d9f5e8", "shape": "square" },
+    "effects": [
+      { "trigger": "independent", "do": { "multPer": { "stat": "emptyJokerSlots", "x": 4 } } }
+    ]
+  },
+  {
+    "id": "doorkeeper",
+    "name": "Doorkeeper",
+    "rarity": "common",
+    "cost": 3,
+    "flavor": "First in line or last to leave. Never the middle.",
+    "description": "+40 Chips if this is your leftmost Joker. +4 Mult if it is your rightmost.",
+    "art": { "glyph": "🗝️", "bg": "#3a2f4b", "fg": "#f5e6ff", "shape": "circle" },
+    "effects": [
+      { "trigger": "independent", "when": { "position": "leftmost" }, "do": { "chips": 40 } },
+      { "trigger": "independent", "when": { "position": "rightmost" }, "do": { "mult": 4 } }
+    ]
+  },
+  {
+    "id": "overflowing_cup",
+    "name": "Overflowing Cup",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Pour early, while there is still something to spill.",
+    "description": "+15 Chips per Hand remaining.",
+    "art": { "glyph": "🏺", "bg": "#1e5a5a", "fg": "#ccfbf1", "shape": "diamond" },
+    "effects": [
+      { "trigger": "independent", "do": { "chipsPer": { "stat": "handsRemaining", "x": 15 } } }
+    ]
+  },
+  {
+    "id": "novice",
+    "name": "Novice",
+    "rarity": "common",
+    "cost": 3,
+    "flavor": "Eager, unremarkable, always available.",
+    "description": "+{mult} Mult.",
+    "art": { "glyph": "🃏", "bg": "#2b3a67", "fg": "#fbcfe8", "shape": "shield" },
+    "effects": [
+      { "trigger": "independent", "do": { "mult": 4 } }
+    ]
+  },
+  {
+    "id": "kindred",
+    "name": "Kindred",
+    "rarity": "common",
+    "cost": 4,
+    "flavor": "Three of anything is a family.",
+    "description": "+{chips} Chips if the played hand contains a Three of a Kind.",
+    "art": { "glyph": "☘️", "bg": "#2f6b4f", "fg": "#dcfce7", "shape": "burst" },
+    "effects": [
+      { "trigger": "independent", "when": { "handContains": "three" }, "do": { "chips": 50 } }
+    ]
+  },
+  {
+    "id": "royal_court",
+    "name": "Royal Court",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "The King speaks, the Queen counts, the Jack does it twice.",
+    "description": "Scored Kings give +5 Mult, Queens give +40 Chips, and Jacks retrigger once.",
+    "art": { "glyph": "👑", "bg": "#7c3aed", "fg": "#fde68a", "shape": "square" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "rank": "K" }, "do": { "mult": 5 } },
+      { "trigger": "card_scored", "when": { "rank": "Q" }, "do": { "chips": 40 } },
+      { "trigger": "card_scored", "when": { "rank": "J" }, "do": { "retrigger": 1 } }
+    ]
+  },
+  {
+    "id": "masquerade",
+    "name": "Masquerade",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "Behind the masks, everyone is nobility.",
+    "description": "During boss blinds every card counts as a face card. +{mult} Mult per scored face card.",
+    "art": { "glyph": "🎭", "bg": "#c2185b", "fg": "#ffe4ec", "shape": "circle" },
+    "effects": [
+      { "trigger": "passive", "passive": { "allFaceCardsBoss": true } },
+      { "trigger": "card_scored", "when": { "face": true }, "do": { "mult": 3 } }
+    ]
+  },
+  {
+    "id": "kindling",
+    "name": "Kindling",
+    "rarity": "uncommon",
+    "cost": 6,
+    "flavor": "Small sticks burn hottest, and briefly.",
+    "description": "Scored 2s to 5s give +{mult} Mult each, and each has a 1 in 4 chance to burn up.",
+    "art": { "glyph": "🪵", "bg": "#e65100", "fg": "#fff3e0", "shape": "diamond" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "rankIn": ["2", "3", "4", "5"] }, "do": { "mult": 5 } },
+      { "trigger": "card_scored", "when": { "rankIn": ["2", "3", "4", "5"], "chance": { "num": 1, "den": 4 } }, "do": { "destroyCard": true } }
+    ]
+  },
+  {
+    "id": "stained_glass",
+    "name": "Stained Glass",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "Four panes are enough to tell the story.",
+    "description": "Flushes can be made with 4 cards. +{mult} Mult if the played hand contains a Flush.",
+    "art": { "glyph": "⛪", "bg": "#1e88e5", "fg": "#e3f2fd", "shape": "shield" },
+    "effects": [
+      { "trigger": "passive", "passive": { "fourCardFlushes": true } },
+      { "trigger": "independent", "when": { "handContains": "flush" }, "do": { "mult": 4 } }
+    ]
+  },
+  {
+    "id": "monochrome",
+    "name": "Monochrome",
+    "rarity": "uncommon",
+    "cost": 8,
+    "flavor": "One colour, held with conviction.",
+    "description": "x{xmult} Mult if the played hand contains a Flush.",
+    "art": { "glyph": "🎨", "bg": "#00838f", "fg": "#e0f7fa", "shape": "burst" },
+    "effects": [
+      { "trigger": "independent", "when": { "handContains": "flush" }, "do": { "xmult": 2 } }
+    ]
+  },
+  {
+    "id": "twin_dye",
+    "name": "Twin Dye",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "Red is red. Black is black. The rest is detail.",
+    "description": "Hearts and Diamonds count as one suit; Clubs and Spades count as one suit. +{chips} Chips on Flushes.",
+    "art": { "glyph": "🧵", "bg": "#d81b60", "fg": "#fce4ec", "shape": "square" },
+    "effects": [
+      { "trigger": "passive", "passive": { "smearedSuits": true } },
+      { "trigger": "independent", "when": { "handContains": "flush" }, "do": { "chips": 30 } }
+    ]
+  },
+  {
+    "id": "rope_bridge",
+    "name": "Rope Bridge",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "One plank missing. Keep walking.",
+    "description": "Straights may skip one rank (4-5-7-8-9 counts). +{chips} Chips if the hand contains a Straight.",
+    "art": { "glyph": "🌉", "bg": "#43a047", "fg": "#e8f5e9", "shape": "circle" },
+    "effects": [
+      { "trigger": "passive", "passive": { "straightGap": true } },
+      { "trigger": "independent", "when": { "handContains": "straight" }, "do": { "chips": 40 } }
+    ]
+  },
+  {
+    "id": "vow_of_silence",
+    "name": "Vow of Silence",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "Say less. Mean it.",
+    "description": "x{xmult} Mult if 2 or fewer cards are played.",
+    "art": { "glyph": "🤫", "bg": "#5e35b1", "fg": "#ede7f6", "shape": "diamond" },
+    "effects": [
+      { "trigger": "independent", "when": { "cardsPlayedLte": 2 }, "do": { "xmult": 2 } }
+    ]
+  },
+  {
+    "id": "refrain",
+    "name": "Refrain",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "The same two notes, and they love it every time.",
+    "description": "x{xmult} Mult if the played hand is a Pair or Two Pair.",
+    "art": { "glyph": "🎼", "bg": "#039be5", "fg": "#e1f5fe", "shape": "shield" },
+    "effects": [
+      { "trigger": "independent", "when": { "handTypeIn": ["pair", "two_pair"] }, "do": { "xmult": 2 } }
+    ]
+  },
+  {
+    "id": "reliquary",
+    "name": "Reliquary",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "Every spent miracle leaves a bone behind.",
+    "description": "Gains x0.1 Mult each time a consumable is used. Currently x{counter} Mult.",
+    "art": { "glyph": "⚱️", "bg": "#8e24aa", "fg": "#f3e5f5", "shape": "burst" },
+    "effects": [
+      { "trigger": "consumable_used", "do": {}, "scale": { "stat": "xmult", "start": 1, "step": 0.1, "resetOn": "never" } }
+    ]
+  },
+  {
+    "id": "kiln",
+    "name": "Kiln",
+    "rarity": "uncommon",
+    "cost": 8,
+    "flavor": "What goes in as clay comes out as heat.",
+    "description": "Gains x0.1 Mult each time a card is destroyed. Currently x{counter} Mult.",
+    "art": { "glyph": "🔥", "bg": "#f4511e", "fg": "#fff3e0", "shape": "square" },
+    "effects": [
+      { "trigger": "card_destroyed", "do": {}, "scale": { "stat": "xmult", "start": 1, "step": 0.1, "resetOn": "never" } }
+    ]
+  },
+  {
+    "id": "bazaar",
+    "name": "Bazaar",
+    "rarity": "uncommon",
+    "cost": 6,
+    "flavor": "More stalls, cheaper haggling.",
+    "description": "+1 shop slot. Rerolls cost $1 less.",
+    "art": { "glyph": "🏪", "bg": "#00acc1", "fg": "#e0f7fa", "shape": "circle" },
+    "effects": [
+      { "trigger": "passive", "passive": { "shopSlots": 1, "rerollDiscount": 1 } }
+    ]
+  },
+  {
+    "id": "winnowing_fan",
+    "name": "Winnowing Fan",
+    "rarity": "uncommon",
+    "cost": 6,
+    "flavor": "Play small and the chaff blows off on its own.",
+    "description": "After you play a hand of 3 or fewer cards, gain +1 Discard for this blind.",
+    "art": { "glyph": "🌬️", "bg": "#7cb342", "fg": "#f1f8e9", "shape": "diamond" },
+    "effects": [
+      { "trigger": "after_hand", "when": { "cardsPlayedLte": 3 }, "do": { "addDiscards": 1 } }
+    ]
+  },
+  {
+    "id": "choir_loft",
+    "name": "Choir Loft",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "A sealed letter, sung twice.",
+    "description": "Each scored card with a seal retriggers once.",
+    "art": { "glyph": "🎤", "bg": "#3949ab", "fg": "#e8eaf6", "shape": "shield" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "hasSeal": true }, "do": { "retrigger": 1 } }
+    ]
+  },
+  {
+    "id": "antiphon",
+    "name": "Antiphon",
+    "rarity": "uncommon",
+    "cost": 8,
+    "flavor": "Call, and the walls answer.",
+    "description": "If 3 or fewer cards are played, each scored card retriggers once.",
+    "art": { "glyph": "📯", "bg": "#fb8c00", "fg": "#fff8e1", "shape": "burst" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "cardsPlayedLte": 3 }, "do": { "retrigger": 1 } }
+    ]
+  },
+  {
+    "id": "quarry",
+    "name": "Quarry",
+    "rarity": "uncommon",
+    "cost": 6,
+    "flavor": "Heavy work, but the stones keep coming.",
+    "description": "+20 Chips per Slab card in your deck. Scored Slab cards retrigger once.",
+    "art": { "glyph": "⛏️", "bg": "#8d6e63", "fg": "#efebe9", "shape": "square" },
+    "effects": [
+      { "trigger": "independent", "do": { "chipsPer": { "stat": "stoneCardsInDeck", "x": 20 } } },
+      { "trigger": "card_scored", "when": { "enhancement": "stone" }, "do": { "retrigger": 1 } }
+    ]
+  },
+  {
+    "id": "shard_collector",
+    "name": "Shard Collector",
+    "rarity": "uncommon",
+    "cost": 6,
+    "flavor": "She keeps the pieces. She says they still count.",
+    "description": "Whenever a Crystal card shatters, create a random Arcana card if there is room.",
+    "art": { "glyph": "💠", "bg": "#00bfa5", "fg": "#e0f2f1", "shape": "circle" },
+    "effects": [
+      { "trigger": "card_destroyed", "when": { "enhancement": "glass" }, "do": { "createConsumable": "arcana" } }
+    ]
+  },
+  {
+    "id": "pyre",
+    "name": "Pyre",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "The low cards go first. They always do.",
+    "description": "Held 2s to 5s have a 1 in 3 chance to burn after scoring. +2 Mult per card burned. Now +{counter} Mult.",
+    "art": { "glyph": "🧨", "bg": "#d84315", "fg": "#fbe9e7", "shape": "diamond" },
+    "effects": [
+      { "trigger": "card_held", "when": { "rankIn": ["2", "3", "4", "5"], "chance": { "num": 1, "den": 3 } }, "do": { "destroyCard": true }, "scale": { "stat": "mult", "start": 0, "step": 2, "resetOn": "never" } }
+    ]
+  },
+  {
+    "id": "fortunes_wheel",
+    "name": "Fortune's Wheel",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "Round it goes; where it stops, you pay or get paid.",
+    "description": "After each hand: 1 in 3 chance to earn $2, and 1 in 12 chance to level up the played hand.",
+    "art": { "glyph": "🎡", "bg": "#ec407a", "fg": "#fce4ec", "shape": "shield" },
+    "effects": [
+      { "trigger": "after_hand", "when": { "chance": { "num": 1, "den": 3 } }, "do": { "money": 2 } },
+      { "trigger": "after_hand", "when": { "chance": { "num": 1, "den": 12 } }, "do": { "levelHand": "played" } }
+    ]
+  },
+  {
+    "id": "shell_game",
+    "name": "Shell Game",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "Three shells, one pea, and the house is watching.",
+    "description": "1 in 4 chance for x{xmult} Mult.",
+    "art": { "glyph": "🐚", "bg": "#26a69a", "fg": "#e0f2f1", "shape": "burst" },
+    "effects": [
+      { "trigger": "independent", "when": { "chance": { "num": 1, "den": 4 } }, "do": { "xmult": 3 } }
+    ]
+  },
+  {
+    "id": "hermit",
+    "name": "Hermit",
+    "rarity": "uncommon",
+    "cost": 8,
+    "flavor": "Company is overrated.",
+    "description": "x{xmult} Mult if you have 2 or fewer Jokers.",
+    "art": { "glyph": "🏕️", "bg": "#558b2f", "fg": "#f1f8e9", "shape": "square" },
+    "effects": [
+      { "trigger": "independent", "when": { "jokerCountLte": 2 }, "do": { "xmult": 2.5 } }
+    ]
+  },
+  {
+    "id": "steady_stride",
+    "name": "Steady Stride",
+    "rarity": "uncommon",
+    "cost": 7,
+    "flavor": "Never sprint at the start of a long road.",
+    "description": "+4 Mult per Hand remaining.",
+    "art": { "glyph": "🚶", "bg": "#29b6f6", "fg": "#e1f5fe", "shape": "circle" },
+    "effects": [
+      { "trigger": "independent", "do": { "multPer": { "stat": "handsRemaining", "x": 4 } } }
+    ]
+  },
+  {
+    "id": "least_of_these",
+    "name": "Least of These",
+    "rarity": "rare",
+    "cost": 9,
+    "flavor": "The smallest are counted first, and counted most.",
+    "description": "Each scored card of rank 5 or lower gives x{xmult} Mult.",
+    "art": { "glyph": "🐜", "bg": "#b45309", "fg": "#fef3c7", "shape": "diamond" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "rankIn": ["2", "3", "4", "5"] }, "do": { "xmult": 1.4 } }
+    ]
+  },
+  {
+    "id": "seamless_robe",
+    "name": "Seamless Robe",
+    "rarity": "rare",
+    "cost": 10,
+    "flavor": "Woven in one piece. No seams, no suits, no argument.",
+    "description": "Every card counts as every suit. -1 hand size.",
+    "art": { "glyph": "🧶", "bg": "#c2410c", "fg": "#ffedd5", "shape": "shield" },
+    "effects": [
+      { "trigger": "passive", "passive": { "wildAllSuits": true, "handSize": -1 } }
+    ]
+  },
+  {
+    "id": "ascension",
+    "name": "Ascension",
+    "rarity": "rare",
+    "cost": 9,
+    "flavor": "The climb ends where the ladder does: at the top.",
+    "description": "An Ace scored as part of a Straight gives x{xmult} Mult.",
+    "art": { "glyph": "🌅", "bg": "#f59e0b", "fg": "#1f1300", "shape": "burst" },
+    "effects": [
+      { "trigger": "card_scored", "when": { "rank": "A", "handContains": "straight" }, "do": { "xmult": 3 } }
+    ]
+  },
+  {
+    "id": "anchorite",
+    "name": "Anchorite",
+    "rarity": "rare",
+    "cost": 9,
+    "flavor": "Walled in with one card and a great deal of time.",
+    "description": "After you play a High Card or a Pair, level up that hand type.",
+    "art": { "glyph": "⛓️", "bg": "#9a3412", "fg": "#fed7aa", "shape": "square" },
+    "effects": [
+      { "trigger": "after_hand", "when": { "handTypeIn": ["high_card", "pair"] }, "do": { "levelHand": "played" } }
+    ]
+  },
+  {
+    "id": "hourglass",
+    "name": "Hourglass",
+    "rarity": "rare",
+    "cost": 10,
+    "flavor": "It never turns over. It only fills.",
+    "description": "Gains x0.1 Mult every time a hand is played. Never resets. Currently x{counter} Mult.",
+    "art": { "glyph": "⏳", "bg": "#d4a017", "fg": "#1f1300", "shape": "circle" },
+    "effects": [
+      { "trigger": "after_hand", "do": {}, "scale": { "stat": "xmult", "start": 1, "step": 0.1, "resetOn": "never" } }
+    ]
+  },
+  {
+    "id": "golden_calf",
+    "name": "Golden Calf",
+    "rarity": "rare",
+    "cost": 9,
+    "flavor": "They melted the treasury down and worshipped it.",
+    "description": "+x0.02 Mult for every $1 you have. At $50 that is x2 Mult.",
+    "art": { "glyph": "🐂", "bg": "#ca8a04", "fg": "#1a1a00", "shape": "diamond" },
+    "effects": [
+      { "trigger": "independent", "do": { "xmultPer": { "stat": "money", "x": 0.02 } } }
+    ]
+  },
+  {
+    "id": "mirror_chapel",
+    "name": "Mirror Chapel",
+    "rarity": "rare",
+    "cost": 9,
+    "flavor": "Every card in your hand has a twin on the far wall.",
+    "description": "Retrigger every card held in hand once. +1 hand size.",
+    "art": { "glyph": "🪞", "bg": "#b91c1c", "fg": "#fee2e2", "shape": "shield" },
+    "effects": [
+      { "trigger": "card_held", "do": { "retrigger": 1 } },
+      { "trigger": "passive", "passive": { "handSize": 1 } }
+    ]
+  },
+  {
+    "id": "hollow_reed",
+    "name": "Hollow Reed",
+    "rarity": "rare",
+    "cost": 8,
+    "flavor": "Empty inside, and that is what makes it sing.",
+    "description": "x1.5 Mult if your deck has 30 or fewer cards. x2 more if it has 20 or fewer (x3 total).",
+    "art": { "glyph": "🎋", "bg": "#a16207", "fg": "#fefce8", "shape": "burst" },
+    "effects": [
+      { "trigger": "independent", "when": { "deckCountLte": 30 }, "do": { "xmult": 1.5 } },
+      { "trigger": "independent", "when": { "deckCountLte": 20 }, "do": { "xmult": 2 } }
+    ]
+  },
+  {
+    "id": "patron_of_fools",
+    "name": "Patron of Fools",
+    "rarity": "rare",
+    "cost": 9,
+    "flavor": "Luck is a saint like any other. She just takes bribes.",
+    "description": "Every '1 in N' chance in the game is twice as likely to succeed. Charm cards included.",
+    "art": { "glyph": "🍀", "bg": "#dc2626", "fg": "#fef2f2", "shape": "square" },
+    "effects": [
+      { "trigger": "custom", "customId": "double_chances", "description": "All chance checks (jokers, Charm cards, Crystal shatter, consumables) use num*2 (capped at den)." }
+    ]
+  },
+  {
+    "id": "solitary_cell",
+    "name": "Solitary Cell",
+    "rarity": "rare",
+    "cost": 8,
+    "flavor": "One occupant. Very strong opinions.",
+    "description": "x{xmult} Mult if this is your only Joker.",
+    "art": { "glyph": "🗿", "bg": "#92400e", "fg": "#fde68a", "shape": "circle" },
+    "effects": [
+      { "trigger": "independent", "when": { "jokerCountLte": 1 }, "do": { "xmult": 4 } }
+    ]
+  },
+  {
+    "id": "vigil",
+    "name": "Vigil",
+    "rarity": "rare",
+    "cost": 10,
+    "flavor": "The night is long. Keep a candle back for the end.",
+    "description": "+1 Hand. +x0.25 Mult per Hand remaining.",
+    "art": { "glyph": "🏮", "bg": "#ea580c", "fg": "#fff7ed", "shape": "diamond" },
+    "effects": [
+      { "trigger": "passive", "passive": { "hands": 1 } },
+      { "trigger": "independent", "do": { "xmultPer": { "stat": "handsRemaining", "x": 0.25 } } }
+    ]
+  },
+  {
+    "id": "doppel",
+    "name": "Doppel",
+    "rarity": "rare",
+    "cost": 10,
+    "flavor": "Stands behind his elder and does everything he does.",
+    "description": "Copies the abilities of the Joker directly to its left.",
+    "art": { "glyph": "👥", "bg": "#7f1d1d", "fg": "#fecaca", "shape": "shield" },
+    "effects": [
+      { "trigger": "custom", "customId": "copy_left", "description": "Runs every non-passive effect of the Joker immediately to its left as if it were its own." }
+    ]
+  },
+  {
+    "id": "the_bellfounder",
+    "name": "The Bellfounder",
+    "rarity": "legendary",
+    "cost": 20,
+    "flavor": "Every hand you play, she casts a larger bell.",
+    "description": "Every time you play a hand, level up that hand type.",
+    "art": { "glyph": "🛎️", "bg": "#0b0b14", "fg": "#39ff14", "shape": "burst" },
+    "effects": [
+      { "trigger": "after_hand", "do": { "levelHand": "played" } }
+    ]
+  },
+  {
+    "id": "the_illuminator",
+    "name": "The Illuminator",
+    "rarity": "legendary",
+    "cost": 20,
+    "flavor": "Gold leaf on every page, given time.",
+    "description": "After scoring, each scored card without an edition has a 1 in 4 chance to gain a random edition.",
+    "art": { "glyph": "✨", "bg": "#12071f", "fg": "#ff2bd6", "shape": "square" },
+    "effects": [
+      { "trigger": "custom", "customId": "gild_scored_cards", "description": "After each hand, each scored card with no edition rolls 1 in 4 to gain Gleam, Prism or Aurora." }
+    ]
+  },
+  {
+    "id": "the_abbot",
+    "name": "The Abbot",
+    "rarity": "legendary",
+    "cost": 20,
+    "flavor": "Counts each card twice: as it is, and as it could be.",
+    "description": "Each scored card also adds its Chip value as Mult.",
+    "art": { "glyph": "📿", "bg": "#001a1a", "fg": "#00f5ff", "shape": "circle" },
+    "effects": [
+      { "trigger": "custom", "customId": "chips_as_mult", "description": "On card_scored, add the chips that card just contributed as flat Mult." }
+    ]
+  },
+  {
+    "id": "the_gravekeeper",
+    "name": "The Gravekeeper",
+    "rarity": "legendary",
+    "cost": 20,
+    "flavor": "The deck gets lighter. He gets stronger. Everyone wins.",
+    "description": "At the start of each blind, destroy a random deck card. +x0.5 Mult per card destroyed. Now x{counter}.",
+    "art": { "glyph": "💀", "bg": "#0f0a00", "fg": "#ffea00", "shape": "diamond" },
+    "effects": [
+      { "trigger": "custom", "customId": "bury_random_card", "description": "At blind_start, destroy one uniformly random card from the full deck (never below hand size)." },
+      { "trigger": "card_destroyed", "do": {}, "scale": { "stat": "xmult", "start": 1, "step": 0.5, "resetOn": "never" } }
+    ]
+  }
+]
