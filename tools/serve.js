@@ -18,7 +18,7 @@ const types = {
   '.woff2': 'font/woff2',
 };
 
-http.createServer((req, res) => {
+const server = http.createServer((req, res) => {
   let url = decodeURIComponent((req.url || '/').split('?')[0]);
   if (url.endsWith('/')) url += 'index.html';
   const file = path.normalize(path.join(root, url));
@@ -31,4 +31,28 @@ http.createServer((req, res) => {
     });
     res.end(data);
   });
-}).listen(port, () => console.log(`Abbytro dev server: http://localhost:${port}`));
+});
+
+// If the port is taken (usually an older copy of this server still running),
+// walk up to the next free one rather than dying with a stack trace.
+function listen(p, attemptsLeft) {
+  const onError = err => {
+    server.removeListener('listening', onListening);
+    if (err.code !== 'EADDRINUSE') throw err;
+    if (attemptsLeft <= 0) {
+      console.error(`Ports ${port}-${p} are all in use. Free one, or set PORT=1234.`);
+      process.exit(1);
+    }
+    console.log(`Port ${p} is in use, trying ${p + 1}...`);
+    listen(p + 1, attemptsLeft - 1);
+  };
+  const onListening = () => {
+    server.removeListener('error', onError);
+    console.log(`Abbytro: http://localhost:${p}`);
+  };
+  server.once('error', onError);
+  server.once('listening', onListening);
+  server.listen(p);
+}
+
+listen(port, 10);
