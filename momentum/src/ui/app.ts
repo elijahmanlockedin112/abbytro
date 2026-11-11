@@ -176,6 +176,7 @@ export class App {
       return;
     }
     this.journey = j;
+    this.persist();
   }
 
   private persist(): void {
