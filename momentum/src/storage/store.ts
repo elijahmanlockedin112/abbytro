@@ -133,11 +133,16 @@ export function addRecord(r: SessionRecord): void {
 export const clearHistory = (): void => write(KEYS.history, null);
 
 /** The trip in progress, so a reload or crash does not lose it. */
-export const loadActive = (): Journey | null => {
-  const j = read<Journey>(KEYS.active);
-  return j && typeof j === 'object' && j.plan && typeof j.plan.plannedMs === 'number' ? j : null;
+export interface ActiveSnapshot {
+  journey: Journey;
+  savedAt: number;
+}
+export const loadActive = (): ActiveSnapshot | null => {
+  const s = read<ActiveSnapshot>(KEYS.active);
+  const j = s?.journey;
+  return j && typeof j === 'object' && j.plan && typeof j.plan.plannedMs === 'number' && typeof s.savedAt === 'number' ? s : null;
 };
-export const saveActive = (j: Journey | null): void => write(KEYS.active, j);
+export const saveActive = (j: Journey | null): void => write(KEYS.active, j ? { journey: j, savedAt: Date.now() } : null);
 
 export function toRecord(j: Journey, motion: boolean): SessionRecord {
   return {

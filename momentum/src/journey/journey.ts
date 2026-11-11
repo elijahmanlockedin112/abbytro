@@ -173,3 +173,9 @@ export function lastPassed(j: Journey, now: number): string {
   for (const w of j.plan.waypoints) if (p >= w.at) name = w.name;
   return name;
 }
+
+/** The next waypoint ahead, or the destination. */
+export function nextStop(j: Journey, now: number): string {
+  const p = progress(j, now);
+  return j.plan.waypoints.find((w) => w.at > p)?.name ?? j.plan.to;
+}
